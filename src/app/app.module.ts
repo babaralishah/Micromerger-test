@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { AppTestcomp1Component } from './app-testcomp1/app-testcomp1.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,8 @@ import { AppTestcomp2Component } from './app-testcomp2/app-testcomp2.component';
     BrowserModule,
     AppRoutingModule,
     SecondModule,
-    ThirdModule
+    ThirdModule,
+    // AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
