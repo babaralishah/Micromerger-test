@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { LocalUserService } from './Services/local-user-service/local-user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 export class AppComponent {
   title = 'test';
   constructor(
+    public LocalUserService: LocalUserService,
     private viewContainerRef: ViewContainerRef,
     private cfr: ComponentFactoryResolver
   ) { }

@@ -1,25 +1,21 @@
 <div class="container">
-
-
     <br><br>
     <h3>Sign Up</h3>
 
-    <form class="mt-4">
+    <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <div class="form-group">
             <label for="exampleInputName">Name</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="name"
-                placeholder="Enter Full Name">
+            <input type="text" class="form-control" formControlName="fullname" placeholder="Enter Full Name">
 
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
+            <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
 
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
         </div><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
