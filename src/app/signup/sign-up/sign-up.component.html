@@ -2,21 +2,28 @@
     <br><br>
     <h3>Sign Up</h3>
 
-    <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="registerUser()">
-        <div class="form-group">
-            <label for="exampleInputName">Name</label>
-            <input type="text" class="form-control" formControlName="fullname" placeholder="Enter Full Name">
-
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
-
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="Password">
-        </div><br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <form class="mt-4" nz-form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="fullname" placeholder="Username" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="The input is not valid E-mail!!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="email" nz-input formControlName="email" placeholder="Email" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button nzType="primary" type="submit">Signup</button>
     </form>
 </div>

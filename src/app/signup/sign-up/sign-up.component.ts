@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
 import { LocalUserService } from 'src/app/Services/local-user-service/local-user.service';
 @Component({
@@ -9,28 +10,45 @@ import { LocalUserService } from 'src/app/Services/local-user-service/local-user
 })
 export class SignUpComponent implements OnInit {
 
-  registerForm: FormGroup;
+  submitted = false;
+  registerForm!: FormGroup;
   constructor(
     private LocalUserService: LocalUserService,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.initialize();
+  }
+  submitForm(): void {
+    for (const i in this.registerForm.controls) {
+      this.registerForm.controls[i].markAsDirty();
+      this.registerForm.controls[i].updateValueAndValidity();
+    }
   }
   initialize() {
     this.registerForm = this.formBuilder.group({
       fullname: ["", Validators.required],
       email: ["", [Validators.required, Validators.email,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),],],
-      password: ["", [Validators.required, Validators.minLength(6)]]
+      password: ["", [Validators.required, Validators.minLength(5)]]
     });
   }
   registerUser() {
+    this.submitForm();
+    if (this.registerForm.invalid) {
+      return;
+    }
 
     console.log(this.registerForm.value);
     this.LocalUserService.saveTheNewUser(this.registerForm.value);
+    this.router.navigateByUrl("/login");
 
   }
+  get f() {
+    return this.registerForm.controls;
+  }
+
 }

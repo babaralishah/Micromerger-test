@@ -1,34 +1,24 @@
 <div class="container">
 
     <br><br>
-    <h3>Home</h3>
-    
-    <button class="btn btn-primary mt-4" routerLink="/signup">Add new User</button>
-    <table class="table mt-3">
-        <thead class="table table-borderless">
+    <h3>Home</h3> <br>
+    <button nz-button nzType="primary" routerLink="/signup" type="submit">Add new User</button>
+    <nz-table #basicTable>
+        <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Operation</th>
+                <th>Name</th>
+                <th>Operation</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td>Ali</td>
-                <td>Edit <br> Delete</td>
-                <!-- <td> <i class="fa fa-edit icon" ></i><br><i class="fa fa-trash icon" ></i></td> -->
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Ahmed</td>
-                <td>Edit <br> Delete</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Hassan</td>
-                <td><a routerLink="/login">Edit </a> <br> Delete</td>
+                <td>{{data?.fullname}}</td>
+                <td>
+                    <a>Edit</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a>Delete</a>
+                </td>
             </tr>
         </tbody>
-    </table>
+    </nz-table>
 </div>
