@@ -1,17 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-
 import { ToastrService } from "ngx-toastr";
-// import {
-//   HttpClient,
-//   HttpHeaders,
-//   HttpErrorResponse,
-// } from "@angular/common/http";
 import { Observable } from "rxjs";
-// import { Router } from "@angular/router";
-// import { throwError } from "rxjs";
-// import { catchError, map } from "rxjs/operators";
-// import jwt_decode from "jwt-decode";import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -50,16 +40,37 @@ export class LocalUserService {
     // existing: any = [];
     this.existing = localStorage.getItem('userData');
     this.existing = JSON.parse(this.existing);
+    // console.log(this.existing);
 
-    console.log(this.existing);
-    console.log(user);
+    if (this.existing == null) {
+      let existing: any = [];
+      existing[0] = user;
+      this.existing = existing[0]
+      // this.existing = user;
+      console.log(this.existing);
+      console.log(existing);
+      localStorage.setItem("userData", JSON.stringify(existing));
 
-    localStorage.setItem("userData", JSON.stringify(user));
-    this.current_user = user;
+    }
+    else {
+      this.existing.push(user)
+      console.log(this.existing);
+      localStorage.setItem("userData", JSON.stringify(this.existing));
+
+    }
+    // this.existing.fullname = user.fullname;
+    // this.existing.email = user.email;
+    // this.existing.password = user.password;
+    // console.log(this.existing);
+    // console.log(user);
+
+    // this.current_user = user;
   }
   getTheUserData() {
     this.existing = localStorage.getItem('userData');
     this.existing = JSON.parse(this.existing);
+    console.log(this.existing);
+
     return this.existing;
   }
 

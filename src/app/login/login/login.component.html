@@ -1,7 +1,7 @@
 <div class="container">
 
     <br><br>
-    <h3>Login</h3>
+    <h3>Login</h3><br>
 
     <form nz-form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
         <nz-form-item>
@@ -29,32 +29,7 @@
             </div>
         </div>
         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-        Or <a> register now! </a>
+        Or <a  routerLink="/signup" > register now! </a>
     </form>
 
 </div>
-
-<!-- <form class="mt-4" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" formControlName="email"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email">
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback text-left">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-            </div>
-
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="Password"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback text-left">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be at least 5 characters
-                </div>
-            </div>
-        </div><br>
-        
-        <button nz-button nzType="primary" type="submit">Login</button>
-    </form> -->

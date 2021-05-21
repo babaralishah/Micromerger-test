@@ -41,10 +41,9 @@ export class SignUpComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
     console.log(this.registerForm.value);
     this.LocalUserService.saveTheNewUser(this.registerForm.value);
-    this.router.navigateByUrl("/login");
+    this.router.navigateByUrl("/home");
 
   }
   get f() {

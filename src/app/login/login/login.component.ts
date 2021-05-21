@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: Router,) {
-    console.log("hey");
-
   }
   submitForm(): void {
     for (const i in this.loginForm.controls) {
@@ -28,12 +26,9 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].updateValueAndValidity();
     }
   }
-
-
   ngOnInit(): void {
     this.initialize();
   }
-
   initialize() {
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email,
@@ -49,14 +44,15 @@ export class LoginComponent implements OnInit {
     }
     console.log(this.loginForm.value);
     this.currentUser = this.LocalUserService.getTheUserData();
-    if (this.currentUser?.email == this.loginForm.value?.email && this.currentUser?.password == this.loginForm.value?.password) {
-
-      this.toastr.success("Successfully Logged In", "Success", {
-        timeOut: 5000,
-      });
-      this.router.navigateByUrl("/home");
+    for (let i = 0; i < this.currentUser.length; i++) {
+      if (this.currentUser[i]?.email == this.loginForm.value?.email && this.currentUser[i]?.password == this.loginForm.value?.password) {
+        this.toastr.success("Successfully Logged In", "Success", {
+          timeOut: 5000,
+        });
+        this.router.navigateByUrl("/home");
+      }
     }
-    else {
+    {
       this.toastr.error("User doesnt exists", "Error", {
         timeOut: 5000,
       });
@@ -64,3 +60,5 @@ export class LoginComponent implements OnInit {
 
   }
 }
+
+

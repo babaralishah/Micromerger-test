@@ -11,14 +11,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{data?.fullname}}</td>
+
+            <tr *ngFor="let user of data">
+                <td>
+                    <span *ngIf="user?.fullname">{{ user?.fullname | titlecase }}</span>
+                    <span *ngIf="!user?.fullname">{{ user?.name | titlecase }}</span>
+                </td>
+                <td>
+                    <a>Edit</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a>Delete</a></td>
+            </tr>
+
+            <!-- <tr>
+                <td>{{data?.fullname | titlecase }}</td>
                 <td>
                     <a>Edit</a>
                     <nz-divider nzType="vertical"></nz-divider>
                     <a>Delete</a>
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
     </nz-table>
 </div>
