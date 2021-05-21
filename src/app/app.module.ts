@@ -1,10 +1,8 @@
-import { NzButtonModule } from 'ng-zorro-antd/button';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from "ngx-toastr";
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { AppTestcomp1Component } from './app-testcomp1/app-testcomp1.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,11 +32,8 @@ registerLocaleData(en);
     AppRoutingModule,
     SecondModule,
     ThirdModule,
-
-
     ToastrModule.forRoot(), // ToastrModule added
     HttpClientModule
-    // AngularFontAwesomeModule
   ],
   providers: [LocalUserService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

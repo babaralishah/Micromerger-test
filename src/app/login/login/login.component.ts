@@ -1,9 +1,8 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { LocalUserService } from 'src/app/Services/local-user-service/local-user.service';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +13,7 @@ export class LoginComponent implements OnInit {
   // validateForm!: FormGroup;
   submitted = false;
   loginForm!: FormGroup;
+  currentUser: any;
   constructor(
     private LocalUserService: LocalUserService,
     private formBuilder: FormBuilder,
@@ -48,7 +48,19 @@ export class LoginComponent implements OnInit {
       return;
     }
     console.log(this.loginForm.value);
-    this.LocalUserService.loginTheUser(this.loginForm.value);
+    this.currentUser = this.LocalUserService.getTheUserData();
+    if (this.currentUser?.email == this.loginForm.value?.email && this.currentUser?.password == this.loginForm.value?.password) {
+
+      this.toastr.success("Successfully Logged In", "Success", {
+        timeOut: 5000,
+      });
+      this.router.navigateByUrl("/home");
+    }
+    else {
+      this.toastr.error("User doesnt exists", "Error", {
+        timeOut: 5000,
+      });
+    }
 
   }
 }

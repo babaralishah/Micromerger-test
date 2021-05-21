@@ -58,7 +58,6 @@ export class LocalUserService {
     this.current_user = user;
   }
   getTheUserData() {
-
     this.existing = localStorage.getItem('userData');
     this.existing = JSON.parse(this.existing);
     return this.existing;
