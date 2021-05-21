@@ -2,7 +2,6 @@
 
     <br><br>
     <h3>Home</h3> <br>
-    <button nz-button nzType="primary" routerLink="/signup" type="submit">Add new User</button>
     <nz-table #basicTable>
         <thead>
             <tr>
@@ -20,17 +19,11 @@
                 <td>
                     <a>Edit</a>
                     <nz-divider nzType="vertical"></nz-divider>
-                    <a>Delete</a></td>
-            </tr>
-
-            <!-- <tr>
-                <td>{{data?.fullname | titlecase }}</td>
-                <td>
-                    <a>Edit</a>
-                    <nz-divider nzType="vertical"></nz-divider>
                     <a>Delete</a>
                 </td>
-            </tr> -->
+            </tr>
+            <button nz-button nzType="primary" routerLink="/signup" type="submit">Add new User</button>
         </tbody>
     </nz-table>
+
 </div>

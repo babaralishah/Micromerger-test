@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
 
   // validateForm!: FormGroup;
+  isUserFound: boolean = true;
   submitted = false;
   loginForm!: FormGroup;
   currentUser: any;
@@ -45,17 +46,34 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.currentUser = this.LocalUserService.getTheUserData();
     for (let i = 0; i < this.currentUser.length; i++) {
+      // console.log(i);
+      // console.log(this.currentUser.length);
       if (this.currentUser[i]?.email == this.loginForm.value?.email && this.currentUser[i]?.password == this.loginForm.value?.password) {
         this.toastr.success("Successfully Logged In", "Success", {
           timeOut: 5000,
         });
+
+        console.log(this.isUserFound);
+        this.isUserFound = true;
         this.router.navigateByUrl("/home");
+      }
+      else if (i == this.currentUser.length) {
+
+        this.toastr.error("User doesnt exists!!", "Error", {
+          timeOut: 5000,
+        });
+        // console.log(this.isUserFound);
+        // this.isUserFound = false;
       }
     }
     {
-      this.toastr.error("User doesnt exists", "Error", {
-        timeOut: 5000,
-      });
+      // if (!this.isUserFound) {
+      //   console.log(this.isUserFound);
+
+      //   this.toastr.error("User doesnt exists!!", "Error", {
+      //     timeOut: 5000,
+      //   });
+      // }
     }
 
   }
