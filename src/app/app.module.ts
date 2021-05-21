@@ -16,6 +16,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { HttpClientModule } from '@angular/common/http';
+import { HighlightDirective } from './Directives/highlight.directive';
 
 registerLocaleData(en);
 
@@ -24,6 +25,7 @@ registerLocaleData(en);
     AppComponent,
     AppTestcomp1Component,
     AppTestcomp2Component,
+    HighlightDirective,
 
   ],
   imports: [
