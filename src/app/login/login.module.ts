@@ -12,11 +12,13 @@ import { LoginComponent } from './login/login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 
+import { HighlightDirective } from '../Directives/highlight.directive';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { ToastrService } from "ngx-toastr";
+import { AuthenticationService } from 'src/app/Services/Authentication-Service/authentication.service';
 import { LocalUserService } from 'src/app/Services/local-user-service/local-user.service';
 @Component({
   selector: 'app-sign-up',
@@ -17,6 +18,7 @@ export class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +43,22 @@ export class SignUpComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    console.log(this.registerForm.value);
-    this.LocalUserService.saveTheNewUser(this.registerForm.value);
-    this.router.navigateByUrl("/home");
+    this.authService.userSignup(this.registerForm.value).subscribe(
+      (data) => {
+        console.log("signup data: ", data);
+        const msg = data.message;
+        this.toastr.success(msg, "Success", {
+          timeOut: 5000,
+        });
+        this.router.navigateByUrl("/home");
+      },
+      (error) => {
+        console.log(error.error.message);
+        this.toastr.error(error.error.message, "Error", {
+          timeOut: 5000,
+        });
+      }
+    );
 
   }
   get f() {

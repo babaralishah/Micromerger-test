@@ -29,8 +29,14 @@
             </div>
         </div>
         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-        Or <a  routerLink="/signup" > register now! </a>
-        <p appHighlight>Highlight me!</p>
+        Or <a routerLink="/signup"> register now! </a>
+        <!-- <p appHighlight>Highlight me (Custom Directive) !</p> -->
+        <!-- <h1 [appHighlight]="color">Highlight me!</h1> -->
+        <!-- <div>
+            <input type="radio" name="colors" (click)="color='lightgreen'">Green
+            <input type="radio" name="colors" (click)="color='yellow'">Yellow
+            <input type="radio" name="colors" (click)="color='cyan'">Cyan
+          </div> -->
     </form>
 
 </div>
