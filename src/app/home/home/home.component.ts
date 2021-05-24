@@ -66,11 +66,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  openModal() {
-    const buttonModal = document.getElementById("openModalButton")
-    console.log('buttonModal', buttonModal)
-    buttonModal.click()
-  }
+
 
 }
 

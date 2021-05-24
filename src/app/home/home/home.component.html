@@ -1,10 +1,4 @@
 <div class="container">
-
-    <div class="bd-example">
-        <button type="button" id="openModalButton" class="btn btn-primary" data-toggle="modal" data-target="#openModal" (click)="openModal()">
-        Launch demo modal
-      </button>
-    </div>
     <br><br>
     <h3>Home</h3> <br>
     <nz-table #basicTable>
@@ -15,7 +9,6 @@
             </tr>
         </thead>
         <tbody>
-
             <tr *ngFor="let user of data">
                 <td>
                     <span *ngIf="user?.fullname">{{ user?.fullname | titlecase }}</span>
@@ -31,75 +24,9 @@
                     <a (click)="deleteUser(user)" role="button" data-toggle="modal"
                         data-target="#exampleModal1">Delete</a>
                 </td>
-                <td style="width: 12%;">
-                    <i class="fa fa-edit icon" (click)="setUserToEdit(user)"></i>
-                    <a (click)="setUserToEdit(user)" role="button"></a>
-                    <span *ngIf="currentLoginUser?.access == 'agent' && !user?.isDeleted">
-                        <i class="fa fa-trash icon" (click)="confirmID(user._id)" data-toggle="modal"
-                            data-target="#exampleModal1">Edit</i>
-                            <a> Edit </a>
-                    </span>
-                    <span *ngIf="currentLoginUser?.access != 'agent'">
-                        <i class="fa fa-trash icon" data-toggle="modal"
-                            data-target="#exampleModal1">edit</i></span> &nbsp;&nbsp;
-                    <span><i class="fas fa-exchange-alt" data-toggle="modal" data-target="#AgentAssign"
-                            >Edit</i></span>
-                </td>
             </tr>
             <button nz-button nzType="primary" routerLink="/signup" type="submit">Add new User</button>
         </tbody>
     </nz-table>
 
-</div>
-
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Delete Confirmation
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete it?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    Delete
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="openModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="openModalLabel" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        
-      <div class="popup">
-      <h3 class="heading-3">Please enter the verification code sent on customer’s mobile</h3>
-      <div class="content">
-         <div class="form-wrapper">
-            <div class="form-group">
-               <input type="text" id="verification" value="" class="form-field webkit-square" placeholder="Verification Code">
-               <label for="verification" class="form-label">Verification Code</label>
-               <button type="button" class="resend-code">Resend Code</button>
-            </div>
-         </div>
-      </div>
-      <div class="mt-20">
-            <button type="button" class="popup-btn">Proceed</button>
-            <button type="button" data-dismiss="modal" class="cancel-btn">Cancel</button>
-         </div>
-   </div>
-
-    </div>
-  </div>
 </div>
