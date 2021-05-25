@@ -20,9 +20,11 @@
                     <a>Delete</a>
                 </td> -->
                 <td>
-                    <i class="fa fa-edit icon" (click)="setUserToEdit(user)"></i>
-                    <a (click)="deleteUser(user)" role="button" data-toggle="modal"
-                        data-target="#exampleModal1">Delete</a>
+                    <!-- <i class="fa fa-edit icon" (click)="setUserToEdit(user)"></i> -->
+                    <a (click)="deleteUser(user)">Delete</a>
+
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="setUser(user)">Edit</a>
                 </td>
             </tr>
             <button nz-button nzType="primary" routerLink="/signup" type="submit">Add new User</button>

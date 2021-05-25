@@ -1,0 +1,29 @@
+<div class="container">
+    <br><br>
+    <h3>Edit User</h3>
+    <br>
+    <form nz-form [formGroup]="registerForm" (ngSubmit)="updateUser()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="fullname" placeholder="Username" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="The input is not valid E-mail!!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="email" nz-input formControlName="email" placeholder="Email" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <!-- <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item> -->
+        <button nz-button nzType="primary" type="submit">Save</button>
+    </form>
+</div>

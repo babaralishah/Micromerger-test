@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/Services/Authentication-Service/authentication.service';
 import { LocalUserService } from 'src/app/Services/local-user-service/local-user.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,6 +14,8 @@ export class HomeComponent implements OnInit {
   user: any;
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver,
     private LocalUserService: LocalUserService,
     private toastr: ToastrService,
     private router: Router,
@@ -30,14 +31,7 @@ export class HomeComponent implements OnInit {
         this.data = data?.data?.docs;
         console.log("data: ", data?.data?.docs);
         const msg = data.message;
-
-        // if (data.userData._id) {
-        // this.toastr.success(msg, "Success", {
-        //   timeOut: 5000,
-        // });
-
         this.router.navigateByUrl("/home");
-        // }
       },
       (error) => {
         console.log(error.error.message);
@@ -63,10 +57,21 @@ export class HomeComponent implements OnInit {
           window.location.reload();
         }, 500);
       });
-
   }
 
+  async getLazy1() {
+    this.viewContainerRef.clear();
+    const { EditUserComponent } = await import('../edit-user/edit-user/edit-user.component');
+    this.viewContainerRef.createComponent(
+      this.cfr.resolveComponentFactory(EditUserComponent)
+    );
+  }
 
+  setUser(user: any) {
+    console.log(user);
 
+    this.authService.setUser(user);
+    this.router.navigateByUrl("/home/edit-user");
+  }
 }
 

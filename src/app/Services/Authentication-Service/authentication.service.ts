@@ -15,6 +15,7 @@ import { catchError, map } from "rxjs/operators";
 export class AuthenticationService {
 
   private readonly url = "http://localhost:3000";
+  user: any;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
   userLogin(user: any): Observable<any> {
@@ -38,5 +39,23 @@ export class AuthenticationService {
       // }
     );
   }
+  // API to set user from user/inventory table to update
+  setUser(user: any) {
+    this.user = user;
+  }
+  // API to get user from user/inventory table to update
+  getUser() {
+    return this.user;
+  }
+  removeUser() {
+    this.user = null;
+  }
+  updateUser(id: any, user: any) {
+    console.log(id);
+    console.log(user);
+    return this.httpClient.put(`${this.url}/users/update/${id}`, user, {
+    });
+  }
 }
+
 
