@@ -10,9 +10,9 @@ import { Router } from "@angular/router";
 })
 export class AuthenticationService {
 
-  private readonly url = "http://localhost:3000";
+  // private readonly url = "http://localhost:3000";
 
-  // private readonly url = "https://micromerger-backend.herokuapp.com";
+  private readonly url = "https://micromerger-backend.herokuapp.com";
   user: any;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
