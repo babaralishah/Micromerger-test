@@ -23,8 +23,8 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "glob": "_redirects",
+                "input": "src",
                 "output": "/"
               }
             ],
@@ -92,12 +92,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/"
-              }
+              "src/assets"
             ],
             "styles": [
               "src/styles .css",
