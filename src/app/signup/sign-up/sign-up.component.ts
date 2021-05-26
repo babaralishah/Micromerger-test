@@ -45,6 +45,7 @@ export class SignUpComponent implements OnInit {
     }
     this.authService.userSignup(this.registerForm.value).subscribe(
       (data) => {
+        // if(){}
         console.log("signup data: ", data);
         const msg = data.message;
         this.toastr.success(msg, "Success", {
@@ -53,7 +54,8 @@ export class SignUpComponent implements OnInit {
         this.router.navigateByUrl("/home");
       },
       (error) => {
-        console.log(error.error.message);
+        console.log(error);
+        // if(){}
         this.toastr.error(error.error.message, "Error", {
           timeOut: 5000,
         });

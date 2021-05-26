@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     this.getTheUserData();
   }
   getTheUserData() {
-    // this.data = this.LocalUserService.getTheUserData();
     this.authService.getAllUser().subscribe(
       (data) => {
         this.data = data?.data?.docs;
@@ -40,7 +39,6 @@ export class HomeComponent implements OnInit {
         });
       }
     );
-    console.log(this.data);
 
   }
   deleteUser(user: any) {
