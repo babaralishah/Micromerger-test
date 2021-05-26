@@ -29,6 +29,12 @@ export class HomeComponent implements OnInit {
       (data) => {
         this.data = data?.data?.docs;
         console.log("data: ", data?.data?.docs);
+        if (data?.data?.docs?.length === 0) {
+
+          localStorage.removeItem("token");
+          console.log("\nlogout\n");
+          this.router.navigateByUrl("login");
+        }
         const msg = data.message;
         this.router.navigateByUrl("/home");
       },
