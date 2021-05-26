@@ -1,5 +1,8 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { AuthenticationService } from './Services/Authentication-Service/authentication.service';
 import { LocalUserService } from './Services/local-user-service/local-user.service';
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +14,10 @@ export class AppComponent {
   constructor(
     public LocalUserService: LocalUserService,
     private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
+    private authService: AuthenticationService,
+    private toastr: ToastrService,
+    private router: Router,
   ) { }
   async getLazy1() {
     this.viewContainerRef.clear();
@@ -27,5 +33,20 @@ export class AppComponent {
     this.viewContainerRef.createComponent(
       this.cfr.resolveComponentFactory(AppTestcomp2Component)
     );
+  }
+
+  isLogin() {
+    const token = this.authService.getToken();
+    return token;
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    // localStorage.removeItem("userData");
+    this.toastr.success("Logged Out", "Success", {
+      timeOut: 5000,
+    });
+    console.log("\nlogout\n");
+    this.router.navigateByUrl("login");
   }
 }

@@ -4,20 +4,37 @@ import {
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  // private readonly url = "http://localhost:3000";
+  private readonly url = "http://localhost:3000";
 
-  private readonly url = "https://micromerger-backend.herokuapp.com";
+  // private readonly url = "https://micromerger-backend.herokuapp.com";
   user: any;
 
   constructor(private httpClient: HttpClient, public router: Router) { }
+
+
+  setToken(token: any) {
+    localStorage.setItem("token", token);
+  }
+  getDecodedToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      console.log(Error);
+      return null;
+    }
+  }
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
   userLogin(user: any): Observable<any> {
-    console.log(user);
+    // console.log(user);
 
     return this.httpClient.post(`${this.url}/users/login`, user);
   }

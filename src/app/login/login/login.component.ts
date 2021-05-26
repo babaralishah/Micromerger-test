@@ -10,7 +10,9 @@ import { AuthenticationService } from 'src/app/Services/Authentication-Service/a
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Input() appHighlight = '';
+
+  tokendata: any;
+  // @Input() appHighlight = '';
   // validateForm!: FormGroup;
   color = 'yellow';
   isUserFound: boolean = true;
@@ -33,6 +35,13 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.initialize();
+    this.tokenization();
+  }
+  async tokenization() {
+    const token = await this.authService.getToken();
+    const decodedToken = await this.authService.getDecodedToken(token);
+    this.tokendata = decodedToken?.data;
+    console.log(this.tokendata);
   }
   initialize() {
     this.loginForm = this.formBuilder.group({
@@ -48,57 +57,29 @@ export class LoginComponent implements OnInit {
     this.submitForm();
     this.authService.userLogin(this.loginForm.value).subscribe(
       (data) => {
-        console.log("Subscribed Data: ", data);
-        const msg = data.message;
-        const token = data.token;
-        const email = this.loginForm.value.email;
+        // console.log("Subscribed Data: ", data);
+        const msg = data?.message;
+        const token = data?.token;
+        // const email = this.loginForm.value.email;
         this.userData = data;
         console.log("UserData", this.userData);
 
         this.toastr.success(msg, "Success", {
-          timeOut: 5000,
+          timeOut: 3000,
         });
+        console.log(token);
+
+        this.authService.setToken(token);
         this.router.navigate(["/home"]);
       },
-      // (error) => {
-      //   console.error(error.error.message);
-      //   this.errorMessage = error;
-      //   this.toastr.error(error.error.message, "Error", {
-      //     timeOut: 5000,
-      //   });
-      // }
+      (error) => {
+        console.error(error);
+        this.toastr.error(error.error.message, "Error", {
+          timeOut: 3000,
+        });
+      }
     );
   }
-
-  // loginUser() {
-  //   this.submitForm();
-  //   this.submitted = true;
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   }
-  //   console.log(this.loginForm.value);
-  //   this.currentUser = this.LocalUserService.getTheUserData();
-  //   for (let i = 0; i < this.currentUser.length; i++) {
-  //     if (this.currentUser[i]?.email == this.loginForm.value?.email && this.currentUser[i]?.password == this.loginForm.value?.password) {
-  //       this.toastr.success("Successfully Logged In", "Success", {
-  //         timeOut: 5000,
-  //       });
-
-  //       console.log(this.isUserFound);
-  //       this.isUserFound = true;
-  //       this.router.navigateByUrl("/home");
-  //     }
-  //     else if (i == this.currentUser.length) {
-
-  //       this.toastr.error("User doesnt exists!!", "Error", {
-  //         timeOut: 5000,
-  //       });
-  //     }
-  //   }
-  //   {
-  //   }
-
-  // }
 }
 
 
