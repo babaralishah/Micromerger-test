@@ -45,13 +45,23 @@ export class SignUpComponent implements OnInit {
     }
     this.authService.userSignup(this.registerForm.value).subscribe(
       (data) => {
-        // if(){}
-        console.log("signup data: ", data);
-        const msg = data.message;
-        this.toastr.success(msg, "Success", {
-          timeOut: 5000,
-        });
-        this.router.navigateByUrl("/home");
+        console.log(data);
+
+        if (data.detail.code === 11000) {
+          console.log("signup data: ", data.detail.code);
+          const msg = data.message;
+          this.toastr.error("Email already in use, try with another email!", "Error", {
+            timeOut: 5000,
+          });
+        }
+        else {
+          console.log("signup data: ", data);
+          const msg = data.message;
+          this.toastr.success(msg, "Success", {
+            timeOut: 5000,
+          });
+          this.router.navigateByUrl("/home");
+        }
       },
       (error) => {
         console.log(error);
