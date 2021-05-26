@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         });
         setTimeout(() => {
           window.location.reload();
-        }, 300);
+        }, 200);
       });
   }
 

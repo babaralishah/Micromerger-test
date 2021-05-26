@@ -13,6 +13,7 @@ export class SignUpComponent implements OnInit {
 
   submitted = false;
   registerForm!: FormGroup;
+  tokendata: any;
   constructor(
     private LocalUserService: LocalUserService,
     private formBuilder: FormBuilder,
@@ -24,6 +25,13 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.initialize();
   }
+
+  // async tokenization() {
+  //   const token = await this.authService.getToken();
+  //   const decodedToken = await this.authService.getDecodedToken(token);
+  //   this.tokendata = decodedToken?.data;
+  //   console.log(this.tokendata);
+  // }
   submitForm(): void {
     for (const i in this.registerForm.controls) {
       this.registerForm.controls[i].markAsDirty();
@@ -47,8 +55,8 @@ export class SignUpComponent implements OnInit {
       (data) => {
         console.log(data);
 
-        if (data.detail.code === 11000) {
-          console.log("signup data: ", data.detail.code);
+        if (data?.detail?.code === 11000) {
+          // console.log("signup data: ", data.detail.code);
           const msg = data.message;
           this.toastr.error("Email already in use, try with another email!", "Error", {
             timeOut: 5000,
@@ -56,10 +64,13 @@ export class SignUpComponent implements OnInit {
         }
         else {
           console.log("signup data: ", data);
-          const msg = data.message;
+          const msg = data?.message;
+          const token = data?.token;
           this.toastr.success(msg, "Success", {
             timeOut: 5000,
           });
+
+          this.authService.setToken(token);
           this.router.navigateByUrl("/home");
         }
       },
