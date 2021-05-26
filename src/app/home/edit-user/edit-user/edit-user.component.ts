@@ -95,16 +95,11 @@ export class EditUserComponent implements OnInit {
   }
   updateUser() {
 
-    console.log(this.registerForm);
-
     this.authService.updateUser(this.user._id, this.registerForm.value)
       .subscribe((data: any) => {
         console.log("signup data: ", data);
-        // const email = this.registerForm.value.email;
         const msg = data.message;
         const code = data.code;
-        // const userData = data?.userData;
-        // console.log(userData);
 
         if (code === 200) {
           this.toastr.success(msg, "Success", {
@@ -112,14 +107,20 @@ export class EditUserComponent implements OnInit {
           });
           this.router.navigateByUrl("/home");
         }
-        // if (userData?._id == this.tokendata?._id) {
-        //   this.authService.setuserData(userData);
-        // }
-        // } else {
-        //   this.toastr.error(msg, "Error", {
-        //     timeOut: 5000,
-        //   });
-        // }
-      });
+      },
+        (error) => {
+          console.log(error.error.message);
+
+          this.toastr.error(error.error.message, "Error", {
+            timeOut: 5000,
+          });
+          setTimeout(() => {
+            this.registerForm.reset();
+          }, 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl("/home");
+          }, 1000);
+        }
+      );
   }
 }
