@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Operation</th>
             </tr>
         </thead>
@@ -13,6 +14,9 @@
                 <td>
                     <span *ngIf="user?.fullname">{{ user?.fullname | titlecase }}</span>
                     <span *ngIf="!user?.fullname">{{ user?.name | titlecase }}</span>
+                </td>
+                <td>
+                    {{user?.email}}
                 </td>
                 <!-- <td>
                     <a>Edit</a>

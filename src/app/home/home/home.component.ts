@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit {
 
           localStorage.removeItem("token");
           console.log("\nlogout\n");
-          this.router.navigateByUrl("login");
+          // this.router.navigateByUrl("login");
+          window.location.reload();
         }
         const msg = data.message;
         this.router.navigateByUrl("/home");
