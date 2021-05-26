@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
+  HttpClient
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
-import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
 // import jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
