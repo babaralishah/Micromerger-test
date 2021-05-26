@@ -103,7 +103,7 @@ export class EditUserComponent implements OnInit {
 
         if (code === 200) {
           this.toastr.success(msg, "Success", {
-            timeOut: 5000,
+            timeOut: 3000,
           });
           this.router.navigateByUrl("/home");
         }
@@ -112,14 +112,14 @@ export class EditUserComponent implements OnInit {
           console.log(error.error.message);
 
           this.toastr.error(error.error.message, "Error", {
-            timeOut: 5000,
+            timeOut: 3000,
           });
           setTimeout(() => {
             this.registerForm.reset();
           }, 1000);
           setTimeout(() => {
             this.router.navigateByUrl("/home");
-          }, 1000);
+          }, 2000);
         }
       );
   }
